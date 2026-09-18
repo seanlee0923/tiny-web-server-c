@@ -25,3 +25,7 @@ https://seongmok.com/57
 https://just-live.tistory.com/entry/CS%EA%B8%B0%EC%B4%88-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%ED%95%B5%EC%8B%AC-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC-socket-connect-bind-listen-accept
 
 https://man7.org
+
+# 기타
+
+검색한 내용들을 코드에 주석으로 걍 떄려박아버려가지고 주석이 엄청 많고 지저분할 예정
