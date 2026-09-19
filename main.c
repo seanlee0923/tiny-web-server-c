@@ -20,16 +20,20 @@ int main(void) {
     if (base_socket == -1) {
         // 소켓 만드는데 실패시 -1 을 리턴함
         // 일단 리턴으로 종료
+        perror("create socket failed");
+        exit(base_socket);
         return 0;
     } 
 
     // 우선 주소는 내 로컬로 걍 박아서 쓰기.
     // htons랑 htonl 이 내 주소를 바이트로 바꾸는거
+    // 이거 왜 14640으로 열리지?? sin_port 를 12345 로 하니까 14640으로 열리고 14640으로 하니까 12345로 열림 (???? 반전술식인가) 
+    // 반전술식이 맞았다 ㅋㅋㅋㅋ 바이트 순서가 반대였구만
     struct sockaddr_in server_addr;
     memset(&server_addr, 0, sizeof(server_addr));
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = 12345;
-    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(12345); // 바이트 정렬을 빅 엔디안으로 맞추기
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY); // 이건 어차피 0이라 상관없지만 일관성위해 맞추기
 
 
     // 2. 바인드 하자
@@ -40,6 +44,8 @@ int main(void) {
     // 그래서 이렇게 캐스팅? 을 해서 넘겨버림. 
     int bind_result = bind(base_socket, (struct sockaddr *)&server_addr , sizeof(server_addr));
     if (bind_result == -1) {
+        perror("bind failed");
+        exit(bind_result);
         return 0;
     }
 
