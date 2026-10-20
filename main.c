@@ -109,6 +109,8 @@ int main(void) {
             "<html><head><title>my server</title></head>\r\n"
             "<body><h1>Hello World</h1></body>\r\n"
             "</html>\r\n";
+        // 이거 짜증나는게 헤더랑 바디 사이에 \r\n 이 없으니까 랜더링이 안됨
+        // http 응답할때 구조 자체가 헤더 \r\n\r\n 바디 라서\r\n 하나만 하니까 헤더에 저 html 뭉탱이도 같이 들어가버렸음;;
 
         // 이제 쓰면 된다.
         // ssize_t write(int fd, const void *buf, size_t count);
